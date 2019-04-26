@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 class Parser:
     category_div_class = 'Ktdaqe'
     category_name_class = 'sv0AUd bs3Xnd'
-    game_neme_div_class = 'WsMG1c nnK0zc'
+    game_name_div_class = 'WsMG1c nnK0zc'
 
     def __init__(self, url: str):
         self.url = url
@@ -21,7 +21,7 @@ class Parser:
         categories = soup.find_all('div', class_=self.category_div_class)
         for cat in categories:
             category_name = cat.find('h2', class_=self.category_name_class).string
-            game_names = cat.find_all('div', class_=self.game_neme_div_class)
+            game_names = cat.find_all('div', class_=self.game_name_div_class)
             for name in game_names:
                 res.append((category_name, name.string))
         return res
@@ -45,4 +45,3 @@ class FormattedPrint:
         objects = self.formatter(self.objects)
         for obj in objects:
             print(obj)
-
